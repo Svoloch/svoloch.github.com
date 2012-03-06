@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="generator" content="Geany 0.18.1">
+	<title>LEXER</title>
+ <link rel="alternate stylesheet" title="Default" href="languages/default.css">
+  <link rel="alternate stylesheet" title="Dark" href="languages/dark.css">
+  <link rel="alternate stylesheet" title="FAR" href="languages/far.css">
+  <link rel="stylesheet" title="IDEA" href="languages/idea.css">
+  <link rel="alternate stylesheet" title="Sunburst" href="languages/sunburst.css">
+
+  <link rel="alternate stylesheet" title="Zenburn" href="languages/zenburn.css">
+  <link rel="alternate stylesheet" title="Visual Studio" href="languages/vs.css">
+  <link rel="alternate stylesheet" title="Ascetic" href="languages/ascetic.css">
+  <link rel="alternate stylesheet" title="Magula" href="languages/magula.css">
+  <link rel="alternate stylesheet" title="GitHub" href="languages/github.css">
+  <link rel="alternate stylesheet" title="Brown Paper" href="languages/brown_paper.css">
+  <link rel="alternate stylesheet" title="School Book" href="languages/school_book.css">
+  <link rel="alternate stylesheet" title="IR_Black" href="languages/ir_black.css">
+  <style>
+    h2 {
+      font: bold 100% Arial, sans-serif;
+      margin-top: 2em;
+      margin-bottom: 0.5em;
+    }
+    table {
+      width: 100%;
+    }
+    th {
+      width: 10em; font-weight: normal;
+    }
+    td, th {
+      vertical-align: top;
+      text-align: left;
+    }
+    pre {
+      margin-top: 0;
+    }
+    ul#switch {
+      padding: 0;
+      margin: 0 0 0 -0.5em;
+    }
+    ul#switch li {
+      border-bottom: 1px dashed blue;
+      display: inline;
+      padding: 0;
+      margin: 0.5em;
+      cursor: pointer;
+    }
+    ul#switch li.current {
+      border-bottom: none;
+      cursor: default;
+    }
+  </style>
+
+  <!--
+  Don't include languages as individual files in production environment.
+  Instead use <script src="highlight.pack.js"></script> with highlight.pack.js
+  containing all the languages you've chosen when downloading the library
+  -->
+  <script src="languages/highlight.js"></script>
+  <script src="languages/cs.js"></script>
+  <script src="languages/python.js"></script>
+  <script src="languages/mel.js"></script>
+  <script src="languages/perl.js"></script>
+
+  <script src="languages/axapta.js"></script>
+  <script src="languages/cpp.js"></script>
+  <script src="languages/sql.js"></script>
+  <script src="languages/smalltalk.js"></script>
+  <script src="languages/profile.js"></script>
+  <script src="languages/bash.js"></script>
+
+  <script src="languages/lua.js"></script>
+  <script src="languages/html-xml.js"></script>
+  <script src="languages/renderman.js"></script>
+  <script src="languages/1c.js"></script>
+  <script src="languages/delphi.js"></script>
+  <script src="languages/dos.js"></script>
+
+  <script src="languages/django.js"></script>
+  <script src="languages/vbscript.js"></script>
+  <script src="languages/ini.js"></script>
+  <script src="languages/apache.js"></script>
+  <script src="languages/nginx.js"></script>
+  <script src="languages/ruby.js"></script>
+
+  <script src="languages/css.js"></script>
+  <script src="languages/lisp.js"></script>
+  <script src="languages/java.js"></script>
+  <script src="languages/javascript.js"></script>
+  <script src="languages/php.js"></script>
+  <script src="languages/diff.js"></script>
+
+  <script src="languages/avrasm.js"></script>
+  <script src="languages/parser3.js"></script>
+  <script src="languages/scala.js"></script>
+  <script src="languages/tex.js"></script>
+  <script>
+  hljs.tabReplace = '    ';
+  hljs.initHighlightingOnLoad();
+  </script>
+
+
+</head><body>
+<h1>Lexer kernel description</h1>
+<h2>About the author</h2>
+Sergiy Shatunov, 1980.
+Specialist in lexical analysis, NC and XML.
+<h2>License</h2>
+LGPL
+<h2>How to get?</h2>
+You can get it <a href="http://sv.jmksf.com/js/parse.js">here</a>.
+And try it <a href="http://sv.jmksf.com/js/test.html">here</a>.
+<h2>Intended Audience</h2>
+This instructions for people who knows not only <i>JavaScript</i> but <i>lex(flex)</i> and <i>yacc(bison)</i> and want to use this library to build a lexical analyzer in <i>JavaScript</i>.
+<h2>General</h2>
+The library interface consists of a function <b>lexer</b> with two arguments:
+<pre><code class=" lua"><span class="function"><span class="keyword">function</span> <span class="title">lexer</span><span class="params">(configuration,options)</span></span></code></pre>
+<h2>Configuration Structure</h2>
+The <b>configuration</b> structure consists of the following fields:
+<pre><code class="javascript">{
+    state:[
+        [expression,function],
+        ...
+        [expression,function]
+    ],
+    ...
+    state:[
+        [expression,function],
+        ...
+        [expression,function]
+    ]
+}</code></pre>
+<b>state</b> - string value, analog of state from lex.<br>
+<b>expression</b> - regexp or string with regexp.<br>
+<b>function</b> - JavaScript function or string with callback code. Takes one argument.
+<h2>Lexer options</h2>
+Options is an object contains the following fields:<br>
+<b>start</b> - start state or "" by default<br>
+<b>before</b> - function or code, starts bebore lexer run.<br>
+<b>after</b> - function or code, starts after lexer finish, lexer returns the result of this function.<br>
+<b>error</b> - function or code, starts on error, lexer returns the result of this function.<br>
+<b>forparser</b> - if true, return function processing text, else process text at once.
+It is comfortably for using with a parser.
+<h2>Structure of argument of callback functions</h2>
+Callback gets static object.
+The lexer changes only the .text field.
+It allows to use one for storing temporaly values.<br>
+Initially it contains next fields:<br>
+<b>text</b> - found text.<br>
+<b>push</b> - yy_push_state analogue.<br>
+<b>pop</b> - yy_pop_state analogue.<br>
+<b>top</b> - yy_top_state analogue.<br>
+<b>begin</b> - BEGIN analogue.<br>
+<b>read</b> -  reads the indicated amount of symbols.<br>
+<b>unput</b> - moves string back to processed text.<br>
+<b>reject</b> - REJECT analogue.<br>
+<b>ret</b> - returns value from lexer.
+<h2>Remarks</h2>
+API will be changed soon.
+<h2>Useful links</h2>
+<a href="http://jscc.jmksf.com/">JS/CC</a> - Main project. This library was  created while working on this project.<br/>
+<a href="http://flex.sourceforge.net/">FLEX</a> - General realization of LEX.<br/>
+<a href="http://www.gnu.org/software/bison/">BISON</a> - General realization of YACC.<br/>
+</body></html>
