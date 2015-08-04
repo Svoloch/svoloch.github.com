@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Набор утилит для чата http://goodgame.ru</title>
+	</head>
+	<body>
+		<button onclick="help.style.display = (help.style.display == 'none') ? 'block' : 'none'">Справка</button>
+		<div id="help" style="display:none">
+			<h3>Предварительная подготовка</h3>
+			<p>
+				Для того чтобы утилита заработала небоходимо установить userscript для целевого браузера.
+				Например, для Chrome и Chromium необходимо установить <a href="http://tampermonkey.net/">Tampermonkey</a>.
+				Далее добавляете скрипт находящийся по <a href="filters.js">ссылке</a> в качестве userscript.
+			</p>
+			<h3>Использование</h3>
+			<p>
+				Введите название своего чата и нажмите на соответствуючую ссылку приведённую ниже.
+				Предварительно убедитесь что userscript запущен.
+			</p>
+			<h3>Поддержка</h3>
+			<p>
+				Жалобы и предложения отправлять в <a href="http://goodgame.ru/chat/SV0L0CH">чат</a>.
+			</p>
+		</div>
+		<div>
+			<label>Ваш чат:</label>
+			<input id="chat"/><br/>
+			<a href="javascript:open('http://goodgame.ru/chat/' + chat.value + '#filter-' + 'moder', '_blank')">Только модераторы</a>
+			<br/>
+			<a href="javascript:open('http://goodgame.ru/chat/' + chat.value + '#filter-' + 'private', '_blank')">Только приватные</a>
+			<br/>
+			<a href="javascript:open('http://goodgame.ru/chat/' + chat.value + '#filter-' + 'noprivate', '_blank')">Без приватных</a>
+			<br/>
+			<a href="javascript:open('http://goodgame.ru/chat/' + chat.value + '#filter-' + 'deleted', '_blank')">Удаленные</a>
+			<br/>
+			<a href="javascript:open('http://goodgame.ru/chat/' + chat.value + '#filter-' + 'nodeleted', '_blank')">Без удаленных</a>
+			<br/>
+			<a href="javascript:open('http://goodgame.ru/chat/' + chat.value + '#filter-' + 'address', '_blank')">Только личные</a>
+			<br/>
+			<a href="javascript:open('http://goodgame.ru/chat/' + chat.value + '#filter-' + 'noaddress', '_blank')">Без личных</a>
+		</div>
+	</body>
+</html>
