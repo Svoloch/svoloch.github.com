@@ -11,14 +11,24 @@
 function pause(){
 	var videos = document.getElementsByTagName("video");
 	for(var videoIndex = 0, videoLength = videos.length; videoIndex < videoLength; videoIndex++){
-		videos[videoIndex].pause();
+		(function(videoIndex){
+			var interval = setInterval(function(){
+				if(!videos[videoIndex].paused){
+					videos[videoIndex].pause();
+					clearInterval(interval);
+				}
+			}, 100);
+			setTimeout(function(){
+			   clearInterval(interval); 
+			}, 1000);
+		})(videoIndex);
 	}
 }
-var url = location.toString();
+var url;
 setInterval(function(){
 	var newUrl = location.toString();
 	if(url !== newUrl){
+		url = newUrl;
 		pause();
 	}
 }, 100);
-pause();
