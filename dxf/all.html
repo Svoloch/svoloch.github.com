@@ -1,0 +1,118 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:include="Svoloch:include">
+	<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8"></meta>
+		<title>DXF</title>
+		<script src="FileSaver.js"></script>
+		<script src="dxf-parser.js"></script>
+		<script src="function.js"></script>
+		<script src="xpath.js"></script>
+		<script src="all.js"></script>
+		<style>
+			.ncPath {
+				stroke:#000;
+				stroke-width:3px;
+				fill: none;
+			}
+			.ncStart {
+				fill: #00f;
+			}
+			.ncPath.ncSelect {
+				stroke:#0f0;
+			}
+			.centerLine {
+				stroke:#282;
+				stroke-width:1px;
+				fill: none;
+			}
+			#operationList {
+				top: 0;
+				background-color: #bbf;
+				position: fixed;
+				right: 0;
+				padding:2px;
+				height: 100%;
+			}
+			#operationListContent {
+				width: 200px;
+			}
+			#topMenu {
+				top: 0;
+				background-color: #fbb;
+				position: fixed;
+				width: 100%;
+				left: 0;
+				padding: 3px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="topMenu">
+	 <div id="topMenuContent">
+	 <input type="checkbox" id="topMenuFix"></input>
+		<input id="file" type="file"></input>
+		<select id="layer"></select>
+		<button id="direction">Направление</button>
+		<button id="sorting">Последовательность</button>
+		<button id="reset">Сбросить</button>
+		<button id="remove">Удалить</button>
+		<button id="generate">Обработать</button>
+		<button id="save">Соханить</button>
+		<button id="incScale">+</button>
+		<button id="decScale">-</button>
+	</div>
+</div>
+		<table style="display: none">
+			<tr>
+				<td>
+					<textarea id="src"></textarea>
+				</td>
+				<td>
+					<textarea id="json"></textarea>
+				</td>
+			</tr>
+		</table>
+		<div>
+	<span>Возврат</span>
+	<select id="backwordDirection">
+		<option value="X">X</option>
+		<option value="Z">Z</option>
+	</select>
+	<input id="backwordValue" type="number" value="200"></input>
+	<br></br>
+	<span>Коррекция</span>
+	<input id="correctionFlag" type="checkbox"></input>
+	<input id="correctionValue" type="number" value="5"></input>
+	<br></br>
+	<table>
+		<tr>
+			<td>
+				<input name="processingType" type="radio" id="turning"></input><span>Токарка</span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input name="processingType" type="radio" id="milling"></input><span>Фрезировка</span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input name="processingType" type="radio" id="edm"></input><span>Электроэрозия</span>
+			</td>
+		</tr>
+	</table>
+</div>
+		<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800">
+	<rect id="background" x="-600" y="-400" width="1200" height="800" fill="#ccc" transform="translate(600,400)"></rect>
+	<line x1="600" x2="600" y1="0" y2="800" class="centerLine"></line>
+	<line x1="0" x2="1200" y1="400" y2="400" class="centerLine"></line>
+	<g id="svg"></g>
+</svg>
+		<div id="operationList">
+	<div id="operationListContent">
+		<div>
+			<input type="checkbox" id="operationListFix"></input>
+		</div>
+	</div>
+</div>
+	</body>
+</html>

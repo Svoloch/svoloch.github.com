@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="jquery.js"></script>
+<script src="FileSaver.js"></script>
+<script src="main.js"></script>
+</head>
+<body>
+<input type="file" id="files"/>
+<input type="number" id="width" min="10" max="500"/>
+<input type="number" id="height" min="10" max="500"/>
+<button id="run">RUN</button>
+<button id="export">Export</button>
+<br/>
+<br/>
+<table>
+  <tbody>
+    <tr>
+      <td><input type="radio" name="coner" value="left-top"/></td>
+      <td><input type="radio" name="coner" value="right-top"/></td>
+      <td><input type="number" id="x_pos" min="1"/></td>
+    </tr>
+    <tr>
+      <td><input type="radio" name="coner" value="left-bottom"/></td>
+      <td><input type="radio" name="coner" value="right-bottom"/></td>
+      <td><input type="number" id="y_pos" min="1"/></td>
+    </tr>
+  </tbody>
+</table>
+<br/>
+<button id="save">Save</button>
+<button id="load">Load</button>
+<br/>
+<button id="add_color">+</button>
+<span id="color_list"></span>
+
+<br/>
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <img id="preview" width="0" height="0"/>
+      </td>
+      <td>
+        <canvas id="proc" width="0" height="0"/>
+      </td>
+      <td>
+        <canvas id="result" width="0" height="0"/>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody id="report"/>
+</table>
+</body>
+</html>
