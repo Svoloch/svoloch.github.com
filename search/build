@@ -1,0 +1,2 @@
+coffee -c -b hl.coffee
+coffee -c -b main.coffee
