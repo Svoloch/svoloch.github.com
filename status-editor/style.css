@@ -1,0 +1,28 @@
+table, th, td {
+    border-width: 3px;
+    border-color: black;
+    border-style: groove;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+td {
+    min-width: auto;
+}
+.current-edge, .current-status, .current-role, .current-validator, .current-modificator {
+    border-style: solid;
+    border-width: 1px;
+    background-color: #99b;
+}
+.navigation-btn {
+   font-size: 200%; 
+}
+.image {
+    max-height: 250px;
+    max-width: 250px;
+}
+.icon {
+    max-height: 20px;
+    max-width: 20px;
+}
